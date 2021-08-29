@@ -13,24 +13,31 @@ Note: This is *very* early in development (~7 hours) as of writing this (Aug 29,
 After [building](https://github.com/Starman0620/QNotepad#build), run `sudo make install` in the build directory
 
 # Build
-
-## Linux
-Ensure you have the necessary Qt dependencies before building. On Ubuntu and related distros, the `qt5-default` package should be enough.
-
 Clone the repo:
 
 ```
 git clone https://github.com/Starman0620/QNotepad --recursive
 ```
 
+## Linux
+Ensure you have the necessary Qt dependencies before building. On Ubuntu and related distros, the `qt5-default` package should be enough.
 
 Build the code:
 
 ```
 mkdir build && cd build
-
 cmake ..
+make
+```
 
+# macOS
+Ensure you have the necessary qt dependencies before building. They can be installed with brew: `brew install qt5`
+
+Build the code:
+
+```
+mkdir build && cd build
+CMAKE_PREFIX_PATH=/usr/local/opt/qt@5 cmake ..
 make
 ```
 
