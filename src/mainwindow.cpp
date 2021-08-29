@@ -2,6 +2,8 @@
 #include <QMessageBox>
 #include <QStandardPaths>
 #include <QFileDialog>
+#include <QDesktopServices>
+#include <QUrl>
 #include <spdlog/spdlog.h>
 #include <cstring>
 #include <filesystem>
@@ -24,7 +26,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->fileOpen, &QAction::triggered, this, &MainWindow::openFile);
     connect(ui->fileSave, &QAction::triggered, this, &MainWindow::saveFile);
     connect(ui->fileSaveAs, &QAction::triggered, this, &MainWindow::saveAs);
-    connect(ui->text, &QTextEdit::textChanged, this, &MainWindow::textUpdated); // Not sure why this needs to be different to the others, but it does
+    connect(ui->text, &QTextEdit::textChanged, this, &MainWindow::textUpdated);
+    connect(ui->helpBugReport, &QAction::triggered, this, &MainWindow::reportBug);
+    connect(ui->helpAbout, &QAction::triggered, this, &MainWindow::aboutDialog);
 
     spdlog::info("Initialized main window");
 }
@@ -178,3 +182,9 @@ std::string MainWindow::saveAsDialog()
 
     return fileName.toStdString();
 }
+
+// Help functions
+
+void MainWindow::reportBug() { QDesktopServices::openUrl(QUrl("https://github.com/Starman0620/QNotepad")); }
+
+void MainWindow::aboutDialog(){ QMessageBox::about(this, "About QNotepad", "QNotepad 0.01\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license"); }

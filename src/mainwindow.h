@@ -21,6 +21,8 @@ private:
 	void openFile();
 	void saveFile();
 	void saveAs();
+	void reportBug();
+	void aboutDialog();
 	std::string saveAsDialog();
 	void closeEvent(QCloseEvent *event);
 

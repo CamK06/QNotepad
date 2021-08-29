@@ -68,7 +68,15 @@ outline: none;
     <addaction name="separator"/>
     <addaction name="fileExit"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="helpBugReport"/>
+    <addaction name="helpAbout"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <action name="fileOpen">
    <property name="text">
@@ -93,6 +101,16 @@ outline: none;
   <action name="fileExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="helpAbout">
+   <property name="text">
+    <string>About QNotepad</string>
+   </property>
+  </action>
+  <action name="helpBugReport">
+   <property name="text">
+    <string>Report a bug</string>
    </property>
   </action>
  </widget>
