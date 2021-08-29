@@ -1,24 +1,30 @@
 #include <QCloseEvent>
 #include <QMessageBox>
+#include <QStandardPaths>
+#include <QFileDialog>
 #include <spdlog/spdlog.h>
 #include <cstring>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
 
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "dialogs.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    spdlog::info("Initializing window...");
     ui->setupUi(this);
     this->setWindowTitle("Untitled - QNotepad");
 
     // Signal handling
     connect(ui->fileExit, &QAction::triggered, this, &MainWindow::exit);
     connect(ui->fileNew, &QAction::triggered, this, &MainWindow::newFile);
+    connect(ui->fileOpen, &QAction::triggered, this, &MainWindow::openFile);
     connect(ui->text, &QTextEdit::textChanged, this, &MainWindow::textUpdated); // Not sure why this needs to be different to the others, but it does
+
+    spdlog::info("Initialized main window");
 }
 
 bool MainWindow::exit(bool now = false) 
@@ -87,11 +93,40 @@ void MainWindow::textUpdated()
     }
 }
 
+// File functions
+
+void MainWindow::openFile()
+{
+    // Get the file from the user
+    QString fileName = QFileDialog::getOpenFileName(this,
+    tr("Open"), QStandardPaths::writableLocation(QStandardPaths::DesktopLocation), tr("Text Files (*.txt *.text);;All Files (*)"));
+    
+    // This should only trigger if the user exits the dialog
+    if(!std::filesystem::exists(fileName.toStdString())) {
+        spdlog::error("Invalid or no file");
+        return;
+    }
+
+    // Read the file into a string
+    std::ifstream file(fileName.toStdString());
+    std::string text((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    
+    // Load the file to GUI
+    this->fileName = std::filesystem::path(fileName.toStdString()).filename();
+    ui->text->clear();
+    ui->text->setText(text.c_str());
+    this->saved = true;
+    updateTitle();
+}
+
 void MainWindow::newFile()
 {
+    // We use exit here simply for the save dialog
     if(exit(true)) {
         ui->text->clear();
         saved = true;
+        this->fileName = "Untitled";
         updateTitle();
+        spdlog::info("Created new file");
     }
 }

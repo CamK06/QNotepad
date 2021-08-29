@@ -18,6 +18,7 @@ private:
 	void textUpdated();
 	void updateTitle();
 	void newFile();
+	void openFile();
 	void closeEvent(QCloseEvent *event);
 
 	Ui::MainWindow *ui;
