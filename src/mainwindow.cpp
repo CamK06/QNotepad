@@ -45,7 +45,7 @@ bool MainWindow::exit(bool now = false)
 
         // Handle the output of the messagebox
         if(answer == QMessageBox::Yes) {
-            // TODO: Add saving logic here
+            saveFile();
             return true;
         }
         else if(answer == QMessageBox::No)
