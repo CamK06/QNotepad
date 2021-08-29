@@ -14,7 +14,7 @@ public:
 	MainWindow(QWidget *parent = nullptr);
 
 private:
-	bool exit(bool closeEvent);
+	bool exit(bool full);
 	void textUpdated();
 	void updateTitle();
 	void newFile();

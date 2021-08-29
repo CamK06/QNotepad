@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     spdlog::info("Initialized main window");
 }
 
-bool MainWindow::exit(bool now = false) 
+bool MainWindow::exit(bool full = false) 
 { 
     if(!saved) {
         // Create a messagebox
@@ -56,8 +56,8 @@ bool MainWindow::exit(bool now = false)
             return false;
     }
 
-    // If we aren't exiting *now* (just using the function for dialogs)
-    if(!now) {
+    // If we aren't actually exiting (just using the function for dialogs)
+    if(!full) {
         spdlog::info("Shutting down...");
         std::exit(0);
     }
