@@ -42,7 +42,7 @@ bool MainWindow::exit(bool fullExit = true)
         sprintf(questionText, "File '%s' has been modified.\n\nWould you like to save the changes?", fileName.c_str());
         auto answer = QMessageBox::question(this, "QNotepad", questionText, 
                                             QMessageBox::Save | QMessageBox::StandardButton::Discard | QMessageBox::Cancel);
-        delete questionText;
+        delete[] questionText;
 
         // Handle the output of the messagebox
         if(answer == QMessageBox::Save) {
@@ -88,7 +88,7 @@ void MainWindow::updateTitle()
 
     // Set the title
     this->setWindowTitle(newTitle);
-    delete newTitle;
+    delete[] newTitle;
 }
 
 void MainWindow::textUpdated() 
@@ -197,5 +197,5 @@ void MainWindow::aboutDialog()
     char* text = new char[69+strlen(VERSION)];
     sprintf(text, "QNotepad %s\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", VERSION);
     QMessageBox::about(this, "About QNotepad", text);
-    delete text;
+    delete[] text;
 }
