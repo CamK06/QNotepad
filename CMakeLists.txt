@@ -4,6 +4,9 @@ project(QNotepad)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_subdirectory(thirdparty/spdlog)
+add_subdirectory(thirdparty/portable-file-dialogs)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -14,4 +17,4 @@ find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_executable(qnotepad ${SOURCES})
-target_link_libraries(qnotepad Qt5::Widgets)
+target_link_libraries(qnotepad Qt5::Widgets spdlog)
