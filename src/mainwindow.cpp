@@ -41,15 +41,15 @@ bool MainWindow::exit(bool fullExit = true)
         char* questionText = new char[63+fileName.length()];
         sprintf(questionText, "File '%s' has been modified.\n\nWould you like to save the changes?", fileName.c_str());
         auto answer = QMessageBox::question(this, "QNotepad", questionText, 
-                                            QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+                                            QMessageBox::Save | QMessageBox::StandardButton::Discard | QMessageBox::Cancel);
         delete questionText;
 
         // Handle the output of the messagebox
-        if(answer == QMessageBox::Yes) {
+        if(answer == QMessageBox::Save) {
             saveFile();
             return true;
         }
-        else if(answer == QMessageBox::No && !fullExit)
+        else if(answer == QMessageBox::Discard && !fullExit)
             return true;
         else if(answer == QMessageBox::Cancel && !fullExit)
             return false;
