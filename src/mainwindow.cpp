@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setWindowTitle("Untitled - QNotepad");
+    updateTitle();
 
     // Signal handling
     connect(ui->fileExit, &QAction::triggered, this, &MainWindow::fileExit);
@@ -80,11 +80,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::updateTitle()
 {
     // Create a new title string based on the save state
-    char* newTitle = new char[10+fileName.length()+ !saved]; // This is a bit of a hacky way to determine length
+    char* newTitle = new char[10+fileName.length()+ !saved+strlen(VERSION)]; // This is a bit of a hacky way to determine length
     if(!saved) 
-        sprintf(newTitle, "*%s - QNotepad", fileName.c_str());
+        sprintf(newTitle, "*%s - QNotepad %s", fileName.c_str(), VERSION);
     else
-        sprintf(newTitle, "%s - QNotepad", fileName.c_str());
+        sprintf(newTitle, "%s - QNotepad %s", fileName.c_str(), VERSION);
 
     // Set the title
     this->setWindowTitle(newTitle);
