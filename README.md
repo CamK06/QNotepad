@@ -5,7 +5,11 @@ A simple notepad program written in Qt, inspired by the Windows notepad
 TODO
 
 # Build
-TODO
+```
+mkdir build && cd build
+cmake ..
+make
+```
 
 # Contributing
 TODO
