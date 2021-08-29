@@ -50,6 +50,7 @@ macOS | Big Sur:
 # Libraries
 * [qt/qt5](https://github.com/qt/qt5)
 * [gabime/spdlog](https://github.com/gabime/spdlog)
+* [fmtlib/fmt](https://github.com/fmtlib/fmt)
 
 # License
 This project is licensed under the terms of the BSD 2-clause license
