@@ -37,7 +37,7 @@ make
 ```
 
 # Screenshots
-![LinuxScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/linux-screenshot.png  "Linux Screenshot")
+![LinuxScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshot.png  "Linux Screenshot")
 ![macOSScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/macos-screenshot.png  "macOS Screenshot")
 
 
