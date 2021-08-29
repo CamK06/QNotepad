@@ -30,7 +30,7 @@ cmake ..
 make
 ```
 
-# macOS
+## macOS
 Ensure you have the necessary qt dependencies before building. They can be installed with brew: `brew install qt5`
 
 Build the code:
