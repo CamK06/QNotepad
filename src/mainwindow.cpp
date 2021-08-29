@@ -11,6 +11,7 @@
 #include <iostream>
 
 #include "mainwindow.h"
+#include "version.h"
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -191,4 +192,10 @@ std::string MainWindow::saveAsDialog()
 
 void MainWindow::reportBug() { QDesktopServices::openUrl(QUrl("https://github.com/Starman0620/QNotepad")); }
 
-void MainWindow::aboutDialog(){ QMessageBox::about(this, "About QNotepad", "QNotepad 0.01\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license"); }
+void MainWindow::aboutDialog() 
+{
+    char* text = new char[69+strlen(VERSION)];
+    sprintf(text, "QNotepad %s\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", VERSION);
+    QMessageBox::about(this, "About QNotepad", text);
+    delete text;
+}
