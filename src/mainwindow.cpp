@@ -162,7 +162,6 @@ void MainWindow::saveFile()
     // Change GUI and internal file vars
     this->saved = true;
     this->fileName = std::filesystem::path(filePath).filename();
-    this->filePath = filePath;
     this->updateTitle();
 }
 
