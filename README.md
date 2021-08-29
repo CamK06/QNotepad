@@ -1,9 +1,4 @@
 # QNotepad
-
-![Screenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshot.png  "Screenshot")
-
-  
-
 A simple notepad program written in Qt, inspired by the Windows notepad.
 
 Note: This is *very* early in development (~7 hours) as of writing this (Aug 29, 4AM EST), expect bugs.
@@ -40,6 +35,11 @@ mkdir build && cd build
 CMAKE_PREFIX_PATH=/usr/local/opt/qt@5 cmake ..
 make
 ```
+
+# Screenshots
+![LinuxScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/linux-screenshot.png  "Linux Screenshot")
+![macOSScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/macos-screenshot.png  "macOS Screenshot")
+
 
 # Libraries
 * [qt/qt5](https://github.com/qt/qt5)
