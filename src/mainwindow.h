@@ -14,7 +14,8 @@ public:
 	MainWindow(QWidget *parent = nullptr);
 
 private:
-	bool exit(bool full);
+	void fileExit() { exit(true); } // Just a workaround for stupid behaviour
+	bool exit(bool fullExit);
 	void textUpdated();
 	void updateTitle();
 	void newFile();

@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("Untitled - QNotepad");
 
     // Signal handling
-    connect(ui->fileExit, &QAction::triggered, this, &MainWindow::exit);
+    connect(ui->fileExit, &QAction::triggered, this, &MainWindow::fileExit);
     connect(ui->fileNew, &QAction::triggered, this, &MainWindow::newFile);
     connect(ui->fileOpen, &QAction::triggered, this, &MainWindow::openFile);
     connect(ui->fileSave, &QAction::triggered, this, &MainWindow::saveFile);
@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     spdlog::info("Initialized main window");
 }
 
-bool MainWindow::exit(bool full = false) 
+bool MainWindow::exit(bool fullExit = true) 
 { 
     if(!saved) {
         // Create a messagebox
@@ -48,16 +48,16 @@ bool MainWindow::exit(bool full = false)
             saveFile();
             return true;
         }
-        else if(answer == QMessageBox::No)
+        else if(answer == QMessageBox::No && !fullExit)
             return true;
-        else if(answer == QMessageBox::Cancel)
+        else if(answer == QMessageBox::Cancel && !fullExit)
             return false;
-        else 
+        else if(!fullExit)
             return false;
     }
 
-    // If we aren't actually exiting (just using the function for dialogs)
-    if(!full) {
+    // If we are exiting the whole program
+    if(fullExit) {
         spdlog::info("Shutting down...");
         std::exit(0);
     }
@@ -68,7 +68,7 @@ bool MainWindow::exit(bool full = false)
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     // Call exit() to get save dialogs if needed
-    if(exit(true)) {
+    if(exit(false)) {
         spdlog::info("Shutting down...");
         event->accept();
     }
@@ -104,7 +104,7 @@ void MainWindow::textUpdated()
 void MainWindow::openFile()
 {
     // Use exit for the save prompt
-    if(!exit(true))
+    if(!exit(false))
         return;
 
     // Get the file from the user
@@ -134,7 +134,7 @@ void MainWindow::openFile()
 void MainWindow::newFile()
 {
     // We use exit here simply for the save dialog
-    if(exit(true)) {
+    if(exit(false)) {
         ui->text->clear();
         saved = true;
         this->fileName = "Untitled";
