@@ -19,10 +19,13 @@ private:
 	void updateTitle();
 	void newFile();
 	void openFile();
+	void saveFile();
+	void saveAs();
+	std::string saveAsDialog();
 	void closeEvent(QCloseEvent *event);
 
 	Ui::MainWindow *ui;
 	std::string fileName = "Untitled";
-	std::string oldTitle;
+	std::string filePath;
 	bool saved = true; // This is true on default just to prevent an asterisk in the title
 };
