@@ -13,8 +13,6 @@ Note: This is *very* early in development (~7 hours) as of writing this (Aug 29,
 
 After [building](https://github.com/Starman0620/QNotepad#build), run `sudo make install` in the build directory
 
-  
-
 # Build
 
 
@@ -24,9 +22,7 @@ Ensure you have the necessary Qt dependencies before building. On Ubuntu and rel
 Clone the repo:
 
 ```
-
 git clone https://github.com/Starman0620/QNotepad --recursive
-
 ```
 
   
@@ -34,13 +30,11 @@ git clone https://github.com/Starman0620/QNotepad --recursive
 Build the code:
 
 ```
-
 mkdir build && cd build
 
 cmake ..
 
 make
-
 ```
 
   
