@@ -19,7 +19,7 @@ Clone the repo:
 git clone https://github.com/Starman0620/QNotepad --recursive
 ```
 
-## Linux
+## Linux/BSD
 Ensure you have the necessary Qt dependencies before building. On Ubuntu and related distros, the `qt5-default` package should be enough.
 
 Build the code:
