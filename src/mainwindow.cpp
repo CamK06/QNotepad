@@ -9,6 +9,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <fmt/core.h>
 
 #include "mainwindow.h"
 #include "version.h"
@@ -38,11 +39,9 @@ bool MainWindow::exit(bool fullExit = true)
 { 
     if(!saved) {
         // Create a messagebox
-        char* questionText = new char[63+fileName.length()];
-        sprintf(questionText, "File '%s' has been modified.\n\nWould you like to save the changes?", fileName.c_str());
-        auto answer = QMessageBox::question(this, "QNotepad", questionText, 
+        std::string questionText = fmt::format("File '{}' has been modified.\n\nWould you like to save the changes?", fileName);
+        auto answer = QMessageBox::question(this, "QNotepad", questionText.c_str(), 
                                             QMessageBox::Save | QMessageBox::StandardButton::Discard | QMessageBox::Cancel);
-        delete[] questionText;
 
         // Handle the output of the messagebox
         if(answer == QMessageBox::Save) {
@@ -79,16 +78,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::updateTitle()
 {
-    // Create a new title string based on the save state
-    char* newTitle = new char[10+fileName.length()+ !saved+strlen(VERSION)]; // This is a bit of a hacky way to determine length
-    if(!saved) 
-        sprintf(newTitle, "*%s - QNotepad %s", fileName.c_str(), VERSION);
-    else
-        sprintf(newTitle, "%s - QNotepad %s", fileName.c_str(), VERSION);
-
-    // Set the title
-    this->setWindowTitle(newTitle);
-    delete[] newTitle;
+    // Set a new title string based on the save state
+    std::string newTitle = fmt::format("{}{} - QNotepad {}", saved ? "" : "*", fileName.c_str(), VERSION);
+    this->setWindowTitle(newTitle.c_str());
 }
 
 void MainWindow::textUpdated() 
@@ -193,8 +185,6 @@ void MainWindow::reportBug() { QDesktopServices::openUrl(QUrl("https://github.co
 
 void MainWindow::aboutDialog() 
 {
-    char* text = new char[69+strlen(VERSION)];
-    sprintf(text, "QNotepad %s\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", VERSION);
-    QMessageBox::about(this, "About QNotepad", text);
-    delete[] text;
+    std::string text = fmt::format("QNotepad {}\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", VERSION);
+    QMessageBox::about(this, "About QNotepad", text.c_str());
 }
