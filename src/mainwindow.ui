@@ -36,7 +36,7 @@
        <bool>true</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">QTextEdit:focus {
+       <string notr="true">QTextEdit {
 border: none;
 outline: none;
 }</string>
