@@ -12,10 +12,15 @@ class MainWindow : public QMainWindow
 
 public:
 	MainWindow(QWidget *parent = nullptr);
-	~MainWindow();
 
 private:
-	void exit();
+	bool exit(bool closeEvent);
+	void textUpdated();
+	void updateTitle();
+	void closeEvent(QCloseEvent *event);
 
 	Ui::MainWindow *ui;
+	std::string fileName = "Untitled";
+	std::string oldTitle;
+	bool saved = true; // This is true on default just to prevent an asterisk in the title
 };
