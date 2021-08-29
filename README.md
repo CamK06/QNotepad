@@ -37,12 +37,12 @@ make
 ```
 
 # Screenshots
-Linux | KDE
+Linux | KDE:
 
 ![LinuxScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshot.png  "Linux Screenshot")
 
 
-macOS | Big Sur
+macOS | Big Sur:
 
 ![macOSScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/macos-screenshot.png  "macOS Screenshot")
 
