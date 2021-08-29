@@ -1,5 +1,6 @@
 # QNotepad
 ![Screenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshot.png "Screenshot")
+
 A simple notepad program written in Qt, inspired by the Windows notepad
 
 # Install
