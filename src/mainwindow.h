@@ -15,6 +15,7 @@ public:
 	~MainWindow();
 
 private:
+	void exit();
 
 	Ui::MainWindow *ui;
 };

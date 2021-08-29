@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(thirdparty/spdlog)
-add_subdirectory(thirdparty/portable-file-dialogs)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
