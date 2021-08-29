@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Signal handling
     connect(ui->fileExit, &QAction::triggered, this, &MainWindow::exit);
+    connect(ui->fileNew, &QAction::triggered, this, &MainWindow::newFile);
     connect(ui->text, &QTextEdit::textChanged, this, &MainWindow::textUpdated); // Not sure why this needs to be different to the others, but it does
 }
 
@@ -83,5 +84,14 @@ void MainWindow::textUpdated()
     if(saved) {
         saved = false;
         updateTitle(); // Only update the title when changing state
+    }
+}
+
+void MainWindow::newFile()
+{
+    if(exit(true)) {
+        ui->text->clear();
+        saved = true;
+        updateTitle();
     }
 }

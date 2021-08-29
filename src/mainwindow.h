@@ -17,6 +17,7 @@ private:
 	bool exit(bool closeEvent);
 	void textUpdated();
 	void updateTitle();
+	void newFile();
 	void closeEvent(QCloseEvent *event);
 
 	Ui::MainWindow *ui;
