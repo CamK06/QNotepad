@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 project(QNotepad)
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(CMAKE_INSTALL_PREFIX "/usr/local")
+else()
+    set(CMAKE_INSTALL_PREFIX "/usr")
+endif()
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -17,3 +23,8 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_executable(qnotepad ${SOURCES})
 target_link_libraries(qnotepad Qt5::Widgets spdlog)
+
+install(TARGETS qnotepad DESTINATION bin)
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    install(FILES ${CMAKE_SOURCE_DIR}/qnotepad.desktop DESTINATION /usr/share/applications)
+endif ()
