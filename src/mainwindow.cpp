@@ -103,6 +103,10 @@ void MainWindow::textUpdated()
 
 void MainWindow::openFile()
 {
+    // Use exit for the save prompt
+    if(!exit(true))
+        return;
+
     // Get the file from the user
     QString fileName = QFileDialog::getOpenFileName(this,
     tr("Open"), QStandardPaths::writableLocation(QStandardPaths::DesktopLocation), tr("Text Files (*.txt *.text);;All Files (*)"));
