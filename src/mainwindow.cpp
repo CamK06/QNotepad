@@ -116,7 +116,7 @@ void MainWindow::openFile()
     std::string text((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     
     // Load the file to GUI
-    this->fileName = std::filesystem::path(fileName.toStdString()).filename();
+    this->fileName = std::filesystem::path(fileName.toStdString()).filename().u8string();
     this->filePath = fileName.toStdString();
     ui->text->clear();
     ui->text->setText(text.c_str());
@@ -154,7 +154,7 @@ void MainWindow::saveFile()
 
     // Change GUI and internal file vars
     this->saved = true;
-    this->fileName = std::filesystem::path(filePath).filename();
+    this->fileName = std::filesystem::path(filePath).filename().u8string();
     this->updateTitle();
 }
 
