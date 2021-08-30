@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    spdlog::info(PROGRAM " " VERSION);
     ui->setupUi(this);
     ui->helpAbout->setText(fmt::format("About {}", PROGRAM).c_str());
     move(pos() + (QGuiApplication::primaryScreen()->geometry().center() - geometry().center()));
