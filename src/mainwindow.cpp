@@ -109,7 +109,7 @@ void MainWindow::textUpdated()
     }
 }
 
-void MainWindow::updateTitle() { this->setWindowTitle(fmt::format("{}{} - {} {}", saved ? "" : "*", fileName.c_str(), PROGRAM, VERSION).c_str()); }
+void MainWindow::updateTitle() { this->setWindowTitle(fmt::format("{}{} - {}", saved ? "" : "*", fileName.c_str(), PROGRAM).c_str()); }
 
 // File functions
 
