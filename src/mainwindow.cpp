@@ -1,8 +1,10 @@
 #include <QCloseEvent>
 #include <QMessageBox>
+#include <QScreen>
 #include <QStandardPaths>
 #include <QFileDialog>
 #include <QDesktopServices>
+#include <QGuiApplication>
 #include <QUrl>
 #include <spdlog/spdlog.h>
 #include <cstring>
@@ -21,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->helpAbout->setText(fmt::format("About {}", PROGRAM).c_str());
+    move(pos() + (QGuiApplication::primaryScreen()->geometry().center() - geometry().center()));
     updateTitle();
 
     // Signal handling
