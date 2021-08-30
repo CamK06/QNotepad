@@ -42,7 +42,7 @@ TODO
 # Screenshots
 Linux | KDE:
 
-![LinuxScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshot.png  "Linux Screenshot")
+![LinuxScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/linux-screenshot.png  "Linux Screenshot")
 
 
 macOS | Big Sur:
