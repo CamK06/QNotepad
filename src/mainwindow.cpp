@@ -41,6 +41,19 @@ MainWindow::MainWindow(QWidget *parent)
     spdlog::info("Initialized main window");
 }
 
+void MainWindow::withFile(std::string fileName)
+{
+    // Load the file if it exists
+    if(std::filesystem::exists(fileName))
+        loadFile(fileName);
+    // Otherwise make a new file
+    else {
+        this->fileName = fileName;
+        this->filePath = fileName;
+        updateTitle();
+    }
+}
+
 // General functions
 
 bool MainWindow::exit(bool fullExit = true) 
@@ -112,18 +125,8 @@ void MainWindow::openFile()
         return;
     }
 
-    // Read the file into a string
-    std::ifstream file(fileName.toStdString());
-    std::string text((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-    
-    // Load the file to GUI
-    this->fileName = std::filesystem::path(fileName.toStdString()).filename().u8string();
-    this->filePath = fileName.toStdString();
-    ui->text->clear();
-    ui->text->setText(text.c_str());
-    this->saved = true;
-    updateTitle();
-    file.close();
+    // Load the file
+    loadFile(fileName.toStdString());
 }
 
 void MainWindow::newFile()
@@ -168,6 +171,22 @@ void MainWindow::saveAs()
 
     // Save the file; using the other function 'cause it's already there
     saveFile();
+}
+
+void MainWindow::loadFile(std::string fileName)
+{
+    // Read the file into a string
+    std::ifstream file(fileName);
+    std::string text((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    
+    // Load the file to GUI
+    this->fileName = std::filesystem::path(fileName).filename().u8string();
+    this->filePath = fileName;
+    ui->text->clear();
+    ui->text->setText(text.c_str());
+    this->saved = true;
+    updateTitle();
+    file.close();
 }
 
 std::string MainWindow::saveAsDialog()

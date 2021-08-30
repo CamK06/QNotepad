@@ -12,6 +12,7 @@ class MainWindow : public QMainWindow
 
 public:
 	MainWindow(QWidget *parent = nullptr);
+	void withFile(std::string fileName);
 
 private:
 	void fileExit() { exit(true); } // Just a workaround for stupid behaviour
@@ -30,6 +31,7 @@ private:
 	void copy();
 	void paste();
 	std::string saveAsDialog();
+	void loadFile(std::string fileName);
 	void closeEvent(QCloseEvent *event);
 
 	Ui::MainWindow *ui;
