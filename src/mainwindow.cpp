@@ -36,12 +36,13 @@ MainWindow::MainWindow(QWidget *parent)
     spdlog::info("Initialized main window");
 }
 
+// General functions
+
 bool MainWindow::exit(bool fullExit = true) 
 { 
     if(!saved) {
         // Create a messagebox
-        std::string questionText = fmt::format("File '{}' has been modified.\n\nWould you like to save the changes?", fileName);
-        auto answer = QMessageBox::question(this, PROGRAM, questionText.c_str(), 
+        auto answer = QMessageBox::question(this, PROGRAM, fmt::format("File '{}' has been modified.\n\nWould you like to save the changes?", fileName).c_str(), 
                                             QMessageBox::Save | QMessageBox::StandardButton::Discard | QMessageBox::Cancel);
 
         // Handle the output of the messagebox
@@ -77,13 +78,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
 }
 
-void MainWindow::updateTitle()
-{
-    // Set a new title string based on the save state
-    std::string newTitle = fmt::format("{}{} - {} {}", saved ? "" : "*", fileName.c_str(), PROGRAM, VERSION);
-    this->setWindowTitle(newTitle.c_str());
-}
-
 void MainWindow::textUpdated() 
 {
     // Update the title if the save state changes
@@ -92,6 +86,8 @@ void MainWindow::textUpdated()
         updateTitle(); // Only update the title when changing state
     }
 }
+
+void MainWindow::updateTitle() { this->setWindowTitle(fmt::format("{}{} - {} {}", saved ? "" : "*", fileName.c_str(), PROGRAM, VERSION).c_str()); }
 
 // File functions
 
@@ -184,9 +180,4 @@ std::string MainWindow::saveAsDialog()
 
 void MainWindow::reportBug() { QDesktopServices::openUrl(QUrl("https://github.com/Starman0620/QNotepad")); }
 
-void MainWindow::aboutDialog() 
-{
-    std::string title = fmt::format("About {}", PROGRAM);
-    std::string text = fmt::format("{} {}\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", PROGRAM, VERSION);
-    QMessageBox::about(this, title.c_str(), text.c_str());
-}
+void MainWindow::aboutDialog() { QMessageBox::about(this, fmt::format("About {}", PROGRAM).c_str(), fmt::format("{} {}\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", PROGRAM, VERSION).c_str()); }
