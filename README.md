@@ -52,5 +52,8 @@ macOS | Big Sur:
 * [gabime/spdlog](https://github.com/gabime/spdlog)
 * [fmtlib/fmt](https://github.com/fmtlib/fmt)
 
+# Contributors
+* [justalemon](https://github.com/justalemon/)
+
 # License
 This project is licensed under the terms of the BSD 2-clause license
