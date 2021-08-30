@@ -1,7 +1,5 @@
 # QNotepad
 A simple notepad program written in Qt, inspired by the Windows notepad.
-
-Note: This is *very* early in development (~7 hours) as of writing this (Aug 29, 4AM EST), expect bugs.
   
 # Install
 
