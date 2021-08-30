@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->helpAbout->setText(fmt::format("About {}", PROGRAM).c_str());
     updateTitle();
 
     // Signal handling
@@ -40,7 +41,7 @@ bool MainWindow::exit(bool fullExit = true)
     if(!saved) {
         // Create a messagebox
         std::string questionText = fmt::format("File '{}' has been modified.\n\nWould you like to save the changes?", fileName);
-        auto answer = QMessageBox::question(this, "QNotepad", questionText.c_str(), 
+        auto answer = QMessageBox::question(this, PROGRAM, questionText.c_str(), 
                                             QMessageBox::Save | QMessageBox::StandardButton::Discard | QMessageBox::Cancel);
 
         // Handle the output of the messagebox
@@ -79,7 +80,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::updateTitle()
 {
     // Set a new title string based on the save state
-    std::string newTitle = fmt::format("{}{} - QNotepad {}", saved ? "" : "*", fileName.c_str(), VERSION);
+    std::string newTitle = fmt::format("{}{} - {} {}", saved ? "" : "*", fileName.c_str(), PROGRAM, VERSION);
     this->setWindowTitle(newTitle.c_str());
 }
 
@@ -185,6 +186,7 @@ void MainWindow::reportBug() { QDesktopServices::openUrl(QUrl("https://github.co
 
 void MainWindow::aboutDialog() 
 {
-    std::string text = fmt::format("QNotepad {}\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", VERSION);
-    QMessageBox::about(this, "About QNotepad", text.c_str());
+    std::string title = fmt::format("About {}", PROGRAM);
+    std::string text = fmt::format("{} {}\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", PROGRAM, VERSION);
+    QMessageBox::about(this, title.c_str(), text.c_str());
 }
