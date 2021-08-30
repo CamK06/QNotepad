@@ -24,6 +24,11 @@ private:
 	void saveAs();
 	void reportBug();
 	void aboutDialog();
+	void undo();
+	void redo();
+	void cut();
+	void copy();
+	void paste();
 	std::string saveAsDialog();
 	void closeEvent(QCloseEvent *event);
 

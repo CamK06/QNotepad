@@ -32,6 +32,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->text, &QTextEdit::textChanged, this, &MainWindow::textUpdated);
     connect(ui->helpBugReport, &QAction::triggered, this, &MainWindow::reportBug);
     connect(ui->helpAbout, &QAction::triggered, this, &MainWindow::aboutDialog);
+    connect(ui->editUndo, &QAction::triggered, this, &MainWindow::undo);
+    connect(ui->editRedo, &QAction::triggered, this, &MainWindow::redo);
+    connect(ui->editCut, &QAction::triggered, this, &MainWindow::cut);
+    connect(ui->editCopy, &QAction::triggered, this, &MainWindow::copy);
+    connect(ui->editPaste, &QAction::triggered, this, &MainWindow::paste);
 
     spdlog::info("Initialized main window");
 }
@@ -175,6 +180,14 @@ std::string MainWindow::saveAsDialog()
 
     return fileName.toStdString();
 }
+
+// Edit functions
+
+void MainWindow::undo() { ui->text->undo(); }
+void MainWindow::redo() { ui->text->redo(); }
+void MainWindow::cut() { ui->text->cut(); }
+void MainWindow::copy() { ui->text->copy(); }
+void MainWindow::paste() { ui->text->paste(); }
 
 // Help functions
 
