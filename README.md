@@ -36,6 +36,9 @@ CMAKE_PREFIX_PATH=/usr/local/opt/qt@5 cmake ..
 make
 ```
 
+## Windows
+TODO
+
 # Screenshots
 Linux | KDE:
 
@@ -46,6 +49,10 @@ macOS | Big Sur:
 
 ![macOSScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/macos-screenshot.png  "macOS Screenshot")
 
+
+Windows 10:
+
+![windowsScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/windows-screenshot.png "Windows Screenshot")
 
 # Libraries
 * [qt/qt5](https://github.com/qt/qt5)
