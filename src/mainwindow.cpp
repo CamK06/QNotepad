@@ -176,8 +176,6 @@ std::string MainWindow::saveAsDialog()
     QString fileName = QFileDialog::getSaveFileName(this,
     tr("Save As..."), QStandardPaths::writableLocation(QStandardPaths::DesktopLocation), tr("Text Files (*.txt *.text);;All Files (*)"));
 
-    // TODO: Add path verification
-
     return fileName.toStdString();
 }
 
@@ -192,5 +190,4 @@ void MainWindow::paste() { ui->text->paste(); }
 // Help functions
 
 void MainWindow::reportBug() { QDesktopServices::openUrl(QUrl("https://github.com/Starman0620/QNotepad")); }
-
 void MainWindow::aboutDialog() { QMessageBox::about(this, fmt::format("About {}", PROGRAM).c_str(), fmt::format("{} {}\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", PROGRAM, VERSION).c_str()); }
