@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QMainWindow>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,6 +19,7 @@ private:
 	void fileExit() { exit(true); } // Just a workaround for stupid behaviour
 	bool exit(bool fullExit);
 	void textUpdated();
+	void cursorMoved();
 	void updateTitle();
 	void newFile();
 	void openFile();
@@ -31,6 +33,7 @@ private:
 	void copy();
 	void paste();
 	void wordWrap();
+	void statusBar();
 	std::string saveAsDialog();
 	void loadFile(std::string fileName);
 	void closeEvent(QCloseEvent *event);
@@ -38,5 +41,6 @@ private:
 	Ui::MainWindow *ui;
 	std::string fileName = "Untitled";
 	std::string filePath;
+	QLabel statusBarLabel;
 	bool saved = true; // This is true on default just to prevent an asterisk in the title
 };

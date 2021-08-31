@@ -24,8 +24,15 @@ MainWindow::MainWindow(QWidget *parent)
     spdlog::info(PROGRAM " " VERSION);
     ui->setupUi(this);
     ui->helpAbout->setText(fmt::format("About {}", PROGRAM).c_str());
+    ui->statusBar->hide();
     move(pos() + (QGuiApplication::primaryScreen()->geometry().center() - geometry().center()));
     updateTitle();
+
+    // StatusBar
+    ui->statusBar->hide();
+    this->statusBarLabel.setAlignment(Qt::AlignRight);
+    cursorMoved();
+    ui->statusBar->addWidget(&statusBarLabel, 1);
 
     // Signal handling
     connect(ui->fileExit, &QAction::triggered, this, &MainWindow::fileExit);
@@ -42,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->editCopy, &QAction::triggered, this, &MainWindow::copy);
     connect(ui->editPaste, &QAction::triggered, this, &MainWindow::paste);
     connect(ui->formatWordWrap, &QAction::triggered, this, &MainWindow::wordWrap);
+    connect(ui->viewStatusBar, &QAction::triggered, this, &MainWindow::statusBar);
+    connect(ui->text, &QTextEdit::cursorPositionChanged, this, &MainWindow::cursorMoved);
 
     spdlog::info("Initialized main window");
 }
@@ -108,6 +117,14 @@ void MainWindow::textUpdated()
         saved = false;
         updateTitle(); // Only update the title when changing state
     }
+}
+
+void MainWindow::cursorMoved()
+{
+    // Update the statusbar
+    int row = ui->text->textCursor().blockNumber();
+    int col = ui->text->textCursor().positionInBlock();
+    this->statusBarLabel.setText(fmt::format("Ln {}, Col {}", row, col).c_str());
 }
 
 void MainWindow::updateTitle() { this->setWindowTitle(fmt::format("{}{} - {}", saved ? "" : "*", fileName.c_str(), PROGRAM).c_str()); }
@@ -220,6 +237,17 @@ void MainWindow::wordWrap()
         ui->text->setLineWrapMode(QTextEdit::LineWrapMode::WidgetWidth);
     else
         ui->text->setLineWrapMode(QTextEdit::LineWrapMode::NoWrap);
+}
+
+// View functions
+
+void MainWindow::statusBar()
+{
+    // Toggle the status bar
+    if(ui->viewStatusBar->isChecked())
+        ui->statusBar->show();
+    else
+        ui->statusBar->hide();
 }
 
 // Help functions
