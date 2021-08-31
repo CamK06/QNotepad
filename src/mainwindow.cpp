@@ -24,12 +24,10 @@ MainWindow::MainWindow(QWidget *parent)
     spdlog::info(PROGRAM " " VERSION);
     ui->setupUi(this);
     ui->helpAbout->setText(fmt::format("About {}", PROGRAM).c_str());
-    ui->statusBar->hide();
     move(pos() + (QGuiApplication::primaryScreen()->geometry().center() - geometry().center()));
     updateTitle();
 
     // StatusBar
-    ui->statusBar->hide();
     this->statusBarLabel.setAlignment(Qt::AlignRight);
     cursorMoved();
     ui->statusBar->addWidget(&statusBarLabel, 1);
