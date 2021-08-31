@@ -30,6 +30,7 @@ private:
 	void cut();
 	void copy();
 	void paste();
+	void wordWrap();
 	std::string saveAsDialog();
 	void loadFile(std::string fileName);
 	void closeEvent(QCloseEvent *event);

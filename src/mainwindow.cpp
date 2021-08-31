@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->editCut, &QAction::triggered, this, &MainWindow::cut);
     connect(ui->editCopy, &QAction::triggered, this, &MainWindow::copy);
     connect(ui->editPaste, &QAction::triggered, this, &MainWindow::paste);
+    connect(ui->formatWordWrap, &QAction::triggered, this, &MainWindow::wordWrap);
 
     spdlog::info("Initialized main window");
 }
@@ -209,6 +210,17 @@ void MainWindow::redo() { ui->text->redo(); }
 void MainWindow::cut() { ui->text->cut(); }
 void MainWindow::copy() { ui->text->copy(); }
 void MainWindow::paste() { ui->text->paste(); }
+
+// Format functions
+
+void MainWindow::wordWrap()
+{
+    // Set word wrapping in the textbox
+    if(ui->formatWordWrap->isChecked())
+        ui->text->setLineWrapMode(QTextEdit::LineWrapMode::WidgetWidth);
+    else
+        ui->text->setLineWrapMode(QTextEdit::LineWrapMode::NoWrap);
+}
 
 // Help functions
 
