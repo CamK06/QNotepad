@@ -122,8 +122,8 @@ void MainWindow::textUpdated()
 void MainWindow::cursorMoved()
 {
     // Update the statusbar
-    int row = ui->text->textCursor().blockNumber();
-    int col = ui->text->textCursor().positionInBlock();
+    int row = ui->text->textCursor().blockNumber()+1;
+    int col = ui->text->textCursor().positionInBlock()+1;
     this->statusBarLabel.setText(fmt::format("Ln {}, Col {}", row, col).c_str());
 }
 
