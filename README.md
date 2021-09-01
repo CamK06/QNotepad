@@ -33,22 +33,27 @@ TODO
 # Screenshots
 Linux | KDE:
 
-![LinuxScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/linux-screenshot.png  "Linux Screenshot")
+![LinuxScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshots/linux-screenshot.png  "Linux Screenshot")
 
 
 macOS | Big Sur:
 
-![macOSScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/macos-screenshot.png  "macOS Screenshot")
+![macOSScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshots/macos-screenshot.png  "macOS Screenshot")
 
 
 Windows 10:
 
-![windowsScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/windows-screenshot.png "Windows Screenshot")
+![windowsScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshots/windows-screenshot.png "Windows Screenshot")
 
 
 Haiku:
 
-![haikuScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/haiku-screenshot.png "Haiku Screenshot")
+![haikuScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshots/haiku-screenshot.png "Haiku Screenshot")
+
+
+FreeBSD | Xfce:
+
+![bsdScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/screenshots/freebsd-screenshot.png "FreeBSD Screenshot")
 
 # Libraries
 * [qt/qt5](https://github.com/qt/qt5)
