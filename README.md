@@ -12,8 +12,8 @@ Clone the repo:
 git clone https://github.com/Starman0620/QNotepad --recursive
 ```
 
-## Linux/BSD
-Ensure you have the necessary Qt dependencies before building. On Ubuntu and related distros, the `qt5-default` package should be enough.
+## Linux, BSD & Haiku
+Ensure you have the Qt5 development dependencies installed. If you don't know what these are, you can search online for your respective system.
 
 Build the code:
 
