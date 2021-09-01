@@ -12,7 +12,7 @@ Clone the repo:
 git clone https://github.com/Starman0620/QNotepad --recursive
 ```
 
-## Linux, BSD & Haiku
+## Linux, BSD, macOS & Haiku
 Ensure you have the Qt5 development dependencies installed. If you don't know what these are, you can search online for your respective system.
 
 Build the code:
@@ -22,16 +22,9 @@ mkdir build && cd build
 cmake ..
 make
 ```
-
-## macOS
-Ensure you have the necessary Qt dependencies before building. They can be installed with brew: `brew install qt5`
-
-Build the code:
-
+Note: on macOS, if qt5 was installed with Brew, you need to run cmake with the following command:
 ```
-mkdir build && cd build
 CMAKE_PREFIX_PATH=/usr/local/opt/qt@5 cmake ..
-make
 ```
 
 ## Windows
