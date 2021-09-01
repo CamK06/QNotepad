@@ -23,7 +23,7 @@ find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_executable(qnotepad ${SOURCES})
-if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "Haiku")
 target_link_libraries(qnotepad Qt5::Widgets spdlog fmt stdc++fs)
 else()
 target_link_libraries(qnotepad Qt5::Widgets spdlog fmt)
