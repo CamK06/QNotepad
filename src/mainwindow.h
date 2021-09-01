@@ -34,6 +34,7 @@ private:
 	void paste();
 	void wordWrap();
 	void statusBar();
+	void fontSelect();
 	std::string saveAsDialog();
 	void loadFile(std::string fileName);
 	void closeEvent(QCloseEvent *event);

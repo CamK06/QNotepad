@@ -94,6 +94,7 @@ outline: none;
      <string>Format</string>
     </property>
     <addaction name="formatWordWrap"/>
+    <addaction name="formatFont"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -117,7 +118,7 @@ outline: none;
   </widget>
   <action name="fileOpen">
    <property name="text">
-    <string>Open</string>
+    <string>Open...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -216,6 +217,11 @@ outline: none;
    </property>
    <property name="text">
     <string>Status Bar</string>
+   </property>
+  </action>
+  <action name="formatFont">
+   <property name="text">
+    <string>Font...</string>
    </property>
   </action>
  </widget>

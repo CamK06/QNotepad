@@ -3,6 +3,7 @@
 #include <QScreen>
 #include <QStandardPaths>
 #include <QFileDialog>
+#include <QFontDialog>
 #include <QDesktopServices>
 #include <QGuiApplication>
 #include <QUrl>
@@ -49,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->formatWordWrap, &QAction::triggered, this, &MainWindow::wordWrap);
     connect(ui->viewStatusBar, &QAction::triggered, this, &MainWindow::statusBar);
     connect(ui->text, &QTextEdit::cursorPositionChanged, this, &MainWindow::cursorMoved);
+    connect(ui->formatFont, &QAction::triggered, this, &MainWindow::fontSelect);
 
     spdlog::info("Initialized main window");
 }
@@ -235,6 +237,19 @@ void MainWindow::wordWrap()
         ui->text->setLineWrapMode(QTextEdit::LineWrapMode::WidgetWidth);
     else
         ui->text->setLineWrapMode(QTextEdit::LineWrapMode::NoWrap);
+}
+
+void MainWindow::fontSelect()
+{
+    // Get the font input from the user
+    bool setFont;
+    QFont font = QFontDialog::getFont(&setFont, ui->text->font(), this);
+
+    // Set the font if the user pressed OK
+    if(setFont) {
+        ui->text->setFont(font);
+        spdlog::info("Changed font");
+    }
 }
 
 // View functions
