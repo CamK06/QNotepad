@@ -52,6 +52,11 @@ Windows 10:
 
 ![windowsScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/windows-screenshot.png "Windows Screenshot")
 
+
+Haiku:
+
+![haikuScreenshot](https://raw.githubusercontent.com/Starman0620/QNotepad/master/haiku-screenshot.png "Haiku Screenshot")
+
 # Libraries
 * [qt/qt5](https://github.com/qt/qt5)
 * [gabime/spdlog](https://github.com/gabime/spdlog)
