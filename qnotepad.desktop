@@ -1,11 +1,11 @@
 [Desktop Entry]
 Exec=qnotepad
-Version=0.01
+Version=1.1
 GenericName=Text Editor
 Name=QNotepad
 NoDisplay=false
 StartupNotify=true
-Terminal=0
+Terminal=false
 Type=Application
 X-KDE-SubstituteUID=false
 Categories=Qt;Utility;TextEditor;
