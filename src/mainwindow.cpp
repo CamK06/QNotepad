@@ -265,5 +265,5 @@ void MainWindow::statusBar()
 
 // Help functions
 
-void MainWindow::reportBug() { QDesktopServices::openUrl(QUrl("https://github.com/Starman0620/QNotepad")); }
+void MainWindow::reportBug() { QDesktopServices::openUrl(QUrl("https://github.com/Starman0620/QNotepad/issues/new")); }
 void MainWindow::aboutDialog() { QMessageBox::about(this, fmt::format("About {}", PROGRAM).c_str(), fmt::format("{} {}\n\nWritten by Cam K.\nLicensed under the BSD 2-Clause license", PROGRAM, VERSION).c_str()); }
