@@ -3,6 +3,10 @@ A simple notepad program written in Qt, inspired by the Windows notepad.
   
 # Install
 
+## With package
+Download the [latest release](https://github.com/Starman0620/QNotepad/releases) and install it as you normally would with your respective package manager
+
+## From source
 After [building](https://github.com/Starman0620/QNotepad#build), run `sudo make install` in the build directory
 
 # Build
