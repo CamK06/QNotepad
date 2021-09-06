@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->formatWordWrap, &QAction::triggered, this, &MainWindow::wordWrap);
     connect(ui->viewStatusBar, &QAction::triggered, this, &MainWindow::statusBar);
     connect(ui->text, &QTextEdit::cursorPositionChanged, this, &MainWindow::cursorMoved);
-    connect(ui->formatFont, &QAction::triggered, this, &MainWindow::fontSelect);
+    connect(ui->formatFont, &QAction::triggered, this, &MainWindow::selectFont);
 
     spdlog::info("Initialized main window");
 }
@@ -239,7 +239,7 @@ void MainWindow::wordWrap()
         ui->text->setLineWrapMode(QTextEdit::LineWrapMode::NoWrap);
 }
 
-void MainWindow::fontSelect()
+void MainWindow::selectFont()
 {
     // Get the font input from the user
     bool setFont;

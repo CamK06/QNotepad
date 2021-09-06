@@ -16,28 +16,39 @@ public:
 	void withFile(std::string fileName);
 
 private:
-	void fileExit() { exit(true); } // Just a workaround for stupid behaviour
-	bool exit(bool fullExit);
-	void textUpdated();
-	void cursorMoved();
-	void updateTitle();
+	// File menu
 	void newFile();
 	void openFile();
 	void saveFile();
 	void saveAs();
-	void reportBug();
-	void aboutDialog();
+	void fileExit() { exit(true); } // This is just a workaround for Qt being annoying
+
+	// Edit menu
 	void undo();
 	void redo();
 	void cut();
 	void copy();
 	void paste();
+
+	// Format menu
 	void wordWrap();
+	void selectFont();
+
+	// View menu
 	void statusBar();
-	void fontSelect();
+
+	// Help menu
+	void reportBug();
+	void aboutDialog();
+
+	// Internal stuff (not directly triggered by the user)
 	std::string saveAsDialog();
 	void loadFile(std::string fileName);
 	void closeEvent(QCloseEvent *event);
+	bool exit(bool fullExit);
+	void textUpdated();
+	void cursorMoved();
+	void updateTitle();
 
 	Ui::MainWindow *ui;
 	std::string fileName = "Untitled";
