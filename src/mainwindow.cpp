@@ -206,8 +206,8 @@ void MainWindow::loadFile(std::string fileName)
     // Load the file to GUI
     this->fileName = std::filesystem::path(fileName).filename().u8string();
     this->filePath = fileName;
-    ui->text->clear();
     ui->text->setText(text.c_str());
+    ui->text->moveCursor(QTextCursor::MoveOperation::End);
     this->saved = true;
     updateTitle();
     file.close();
