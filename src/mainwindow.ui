@@ -31,7 +31,7 @@
      <number>0</number>
     </property>
     <item row="0" column="0">
-     <widget class="QTextEdit" name="text">
+     <widget class="Editor" name="text">
       <property name="mouseTracking">
        <bool>true</bool>
       </property>
@@ -225,6 +225,13 @@ outline: none;
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Editor</class>
+   <extends>QTextEdit</extends>
+   <header>editor.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

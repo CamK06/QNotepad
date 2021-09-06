@@ -13,6 +13,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_subdirectory(thirdparty/spdlog)
 add_subdirectory(thirdparty/fmt)
 
+include_directories(src) # This shouldn't be needed, but we do it so ui_mainwindow.h can see editor.h
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)

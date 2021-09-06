@@ -16,6 +16,7 @@
 
 #include "mainwindow.h"
 #include "version.h"
+#include "editor.h"
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
