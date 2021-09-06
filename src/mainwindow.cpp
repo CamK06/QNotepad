@@ -80,11 +80,12 @@ bool MainWindow::exit(bool fullExit = true)
         // Handle the output of the messagebox
         if(answer == QMessageBox::Save) {
             saveFile();
-            return true;
+            if(!fullExit)
+                return true;
         }
         else if(answer == QMessageBox::Discard && !fullExit)
             return true;
-        else if(answer == QMessageBox::Cancel && !fullExit)
+        else if(answer == QMessageBox::Cancel)
             return false;
         else if(!fullExit)
             return false;
