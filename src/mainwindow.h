@@ -15,6 +15,7 @@ public:
 	MainWindow(QWidget *parent = nullptr);
 	void withFile(std::string fileName);
 	void loadFile(std::string fileName);
+	bool exit(bool fullExit);
 
 private:
 	// File menu
@@ -45,7 +46,6 @@ private:
 	// Internal stuff (not directly triggered by the user)
 	std::string saveAsDialog();
 	void closeEvent(QCloseEvent *event);
-	bool exit(bool fullExit);
 	void textUpdated();
 	void cursorMoved();
 	void updateTitle();
