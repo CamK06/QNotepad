@@ -151,6 +151,9 @@ outline: none;
    <property name="text">
     <string>Exit</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="helpAbout">
    <property name="text">
