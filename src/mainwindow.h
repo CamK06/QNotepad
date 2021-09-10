@@ -2,6 +2,8 @@
 
 #include <QMainWindow>
 #include <QLabel>
+#include "search.h"
+#include "./ui_searchdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +33,7 @@ private:
 	void cut();
 	void copy();
 	void paste();
+	void search();
 
 	// Format menu
 	void wordWrap();
@@ -51,6 +54,7 @@ private:
 	void updateTitle();
 
 	Ui::MainWindow *ui;
+	Ui::SearchDialog *findDialog = NULL;
 	std::string fileName = "Untitled";
 	std::string filePath;
 	QLabel statusBarLabel;

@@ -17,7 +17,9 @@
 #include "mainwindow.h"
 #include "version.h"
 #include "editor.h"
+#include "search.h"
 #include "./ui_mainwindow.h"
+#include "./ui_searchdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -52,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->viewStatusBar, &QAction::triggered, this, &MainWindow::statusBar);
     connect(ui->text, &QTextEdit::cursorPositionChanged, this, &MainWindow::cursorMoved);
     connect(ui->formatFont, &QAction::triggered, this, &MainWindow::selectFont);
+    connect(ui->editFind, &QAction::triggered, this, &MainWindow::search);
 
     spdlog::info("Initialized main window");
 }
@@ -229,6 +232,12 @@ void MainWindow::redo() { ui->text->redo(); }
 void MainWindow::cut() { ui->text->cut(); }
 void MainWindow::copy() { ui->text->copy(); }
 void MainWindow::paste() { ui->text->paste(); }
+
+void MainWindow::search()
+{
+    SearchDialog dialog;
+    dialog.exec();
+}
 
 // Format functions
 

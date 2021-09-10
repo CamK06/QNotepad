@@ -88,6 +88,8 @@ outline: none;
     <addaction name="editCut"/>
     <addaction name="editCopy"/>
     <addaction name="editPaste"/>
+    <addaction name="separator"/>
+    <addaction name="editFind"/>
    </widget>
    <widget class="QMenu" name="menuFormat">
     <property name="title">
@@ -222,6 +224,14 @@ outline: none;
   <action name="formatFont">
    <property name="text">
     <string>Font...</string>
+   </property>
+  </action>
+  <action name="editFind">
+   <property name="text">
+    <string>Find...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>
