@@ -2,6 +2,7 @@
 
 #include <QDialog>
 #include <QWidget>
+
 #include "./ui_searchdialog.h"
 
 QT_BEGIN_NAMESPACE
@@ -14,7 +15,9 @@ class SearchDialog : public QDialog
 
 public:
     SearchDialog(QWidget *parent = nullptr);
-    Ui_findDialog ui;
+    Ui::SearchDialog *ui;
 
 private:
+    void findNext();
+    void cancel();
 };

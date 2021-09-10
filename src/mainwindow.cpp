@@ -235,6 +235,7 @@ void MainWindow::paste() { ui->text->paste(); }
 
 void MainWindow::search()
 {
+    // Show the search dialog
     SearchDialog dialog;
     dialog.exec();
 }

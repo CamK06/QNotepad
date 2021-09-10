@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>findDialog</class>
- <widget class="QDialog" name="findDialog">
+ <class>SearchDialog</class>
+ <widget class="QDialog" name="SearchDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -42,14 +42,14 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="findNext">
+       <widget class="QPushButton" name="findNextButton">
         <property name="text">
          <string>Find Next</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="cancel">
+       <widget class="QPushButton" name="cancelButton">
         <property name="text">
          <string>Cancel</string>
         </property>
