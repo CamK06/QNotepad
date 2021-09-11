@@ -24,8 +24,10 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , searchDialog(new SearchDialog(this))
 {
     spdlog::info(PROGRAM " " VERSION);
+    searchDialog->close();
     ui->setupUi(this);
     ui->helpAbout->setText(fmt::format("About {}", PROGRAM).c_str());
     move(pos() + (QGuiApplication::primaryScreen()->geometry().center() - geometry().center()));
@@ -232,13 +234,7 @@ void MainWindow::redo() { ui->text->redo(); }
 void MainWindow::cut() { ui->text->cut(); }
 void MainWindow::copy() { ui->text->copy(); }
 void MainWindow::paste() { ui->text->paste(); }
-
-void MainWindow::search()
-{
-    // Show the search dialog
-    SearchDialog dialog(this);
-    dialog.exec();
-}
+void MainWindow::search() { searchDialog->exec(); }
 
 // Format functions
 

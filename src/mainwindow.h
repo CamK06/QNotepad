@@ -56,6 +56,7 @@ private:
 	void updateTitle();
 
 	Ui::MainWindow *ui;
+	SearchDialog *searchDialog;
 	std::string fileName = "Untitled";
 	std::string filePath;
 	QLabel statusBarLabel;
