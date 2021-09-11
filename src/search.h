@@ -3,6 +3,7 @@
 #include <QDialog>
 #include <QWidget>
 
+#include "mainwindow.h"
 #include "./ui_searchdialog.h"
 
 QT_BEGIN_NAMESPACE
@@ -19,5 +20,7 @@ public:
 
 private:
     void findNext();
-    void cancel();
+    void queryUpdated();
+
+    bool hasSearched = false;
 };

@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QLabel>
 #include "search.h"
+#include "editor.h"
 #include "./ui_searchdialog.h"
 
 QT_BEGIN_NAMESPACE
@@ -18,6 +19,7 @@ public:
 	void withFile(std::string fileName);
 	void loadFile(std::string fileName);
 	bool exit(bool fullExit);
+	Editor *editor();
 
 private:
 	// File menu
@@ -54,7 +56,6 @@ private:
 	void updateTitle();
 
 	Ui::MainWindow *ui;
-	Ui::SearchDialog *findDialog = NULL;
 	std::string fileName = "Untitled";
 	std::string filePath;
 	QLabel statusBarLabel;
