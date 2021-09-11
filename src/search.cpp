@@ -20,15 +20,10 @@ SearchDialog::SearchDialog(QWidget *parent)
     connect(ui->cancelButton, &QPushButton::pressed, this, &SearchDialog::close);
     connect(ui->findNextButton, &QPushButton::pressed, this, &SearchDialog::findNext);
     connect(ui->query, &QLineEdit::textChanged, this, &SearchDialog::queryUpdated);
-    connect(ui->query, &QLineEdit::returnPressed, this, &SearchDialog::findNext);
 }
 
 void SearchDialog::findNext()
 {
-    // Check if the query is blank. With the button press this will never be true, but is possible with enter
-    if(ui->query->text().isEmpty())
-        return;
-
     // TODO: find a better way to access the main editor
     // (this just seems silly to create this pointer again each time the button is pressed)
     Editor* editor = ((MainWindow*)parent())->editor();
