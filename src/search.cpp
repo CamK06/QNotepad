@@ -28,8 +28,16 @@ void SearchDialog::findNext()
     // (this just seems silly to create this pointer again each time the button is pressed)
     Editor* editor = ((MainWindow*)parent())->editor();
 
+    // Set the search flags
+    QTextDocument::FindFlags flags;
+    if(ui->downRadio->isChecked())
+        flags.setFlag(QTextDocument::FindBackward, true);
+    if(ui->matchCase->isChecked())
+        flags.setFlag(QTextDocument::FindCaseSensitively, true);
+
     // Execute the search
-    bool found = editor->find(ui->query->text(), QTextDocument::FindWholeWords);
+    bool found = false;
+    found = editor->find(ui->query->text(), flags);
     if(!found)
         QMessageBox::information(this, PROGRAM, fmt::format("Cannot find '{}'", ui->query->text().toStdString()).c_str(), QMessageBox::Ok);
 }
