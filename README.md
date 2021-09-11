@@ -1,5 +1,5 @@
 # QNotepad
-A simple notepad program written in Qt, inspired by the Windows notepad.
+A simple notepad program written in C++ with Qt, inspired by the Windows notepad.
   
 # Install
 
