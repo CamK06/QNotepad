@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
     updateTitle();
 
     // StatusBar
-    this->statusBarLabel.setAlignment(Qt::AlignRight);
+    statusBarLabel.setAlignment(Qt::AlignRight);
     cursorMoved();
     ui->statusBar->addWidget(&statusBarLabel, 1);
 
@@ -68,8 +68,8 @@ void MainWindow::withFile(std::string fileName)
         loadFile(fileName);
     // Otherwise make a new file
     else {
-        this->fileName = fileName;
-        this->filePath = fileName;
+        fileName = fileName;
+        filePath = fileName;
         updateTitle();
     }
 }
@@ -131,10 +131,10 @@ void MainWindow::cursorMoved()
     // Update the statusbar
     int row = ui->text->textCursor().blockNumber()+1;
     int col = ui->text->textCursor().positionInBlock()+1;
-    this->statusBarLabel.setText(fmt::format("Ln {}, Col {}", row, col).c_str());
+    statusBarLabel.setText(fmt::format("Ln {}, Col {}", row, col).c_str());
 }
 
-void MainWindow::updateTitle() { this->setWindowTitle(fmt::format("{}{} - {}", saved ? "" : "*", fileName.c_str(), PROGRAM).c_str()); }
+void MainWindow::updateTitle() { setWindowTitle(fmt::format("{}{} - {}", saved ? "" : "*", fileName.c_str(), PROGRAM).c_str()); }
 
 // File functions
 
@@ -164,8 +164,8 @@ void MainWindow::newFile()
     if(exit(false)) {
         ui->text->clear();
         saved = true;
-        this->fileName = "Untitled";
-        this->filePath.clear();
+        fileName = "Untitled";
+        filePath.clear();
         updateTitle();
         spdlog::info("Created new file");
     }
@@ -186,15 +186,15 @@ void MainWindow::saveFile()
     file.close();
 
     // Change GUI and internal file vars
-    this->saved = true;
-    this->fileName = std::filesystem::path(filePath).filename().u8string();
-    this->updateTitle();
+    saved = true;
+    fileName = std::filesystem::path(filePath).filename().u8string();
+    updateTitle();
 }
 
 void MainWindow::saveAs()
 {
     // Get a file path from the user
-    this->filePath = saveAsDialog();
+    filePath = saveAsDialog();
     if(filePath.empty())
         return;
 
@@ -209,11 +209,11 @@ void MainWindow::loadFile(std::string fileName)
     std::string text((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     
     // Load the file to GUI
-    this->fileName = std::filesystem::path(fileName).filename().u8string();
-    this->filePath = fileName;
+    fileName = std::filesystem::path(fileName).filename().u8string();
+    filePath = fileName;
     ui->text->setText(text.c_str());
     ui->text->moveCursor(QTextCursor::MoveOperation::End);
-    this->saved = true;
+    saved = true;
     updateTitle();
     file.close();
 }
