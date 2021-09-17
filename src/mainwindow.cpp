@@ -27,6 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
     , searchDialog(new SearchDialog(this))
 {
     spdlog::info(PROGRAM " " VERSION);
+#if !ADVANCED
+    spdlog::info("Running in classic mode. Build with -DCLASSIC=OFF to enable advanced features");
+#endif
     searchDialog->close();
     ui->setupUi(this);
     ui->helpAbout->setText(fmt::format("About {}", PROGRAM).c_str());
