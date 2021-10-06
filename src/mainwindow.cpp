@@ -62,7 +62,50 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->editFind, &QAction::triggered, this, &MainWindow::search);
 
     spdlog::info("Initialized main window");
+
+#if ADVANCED
+    // Discord presence initialization
+    memset(&discordHandlers, 0, sizeof(discordHandlers));
+    memset(&discordPresence, 0, sizeof(discordPresence));
+    Discord_Initialize(DISCORD_CLIENT_ID, &discordHandlers, 1, "");
+    updatePresence();
+    discordInitialized = true;
+
+    // Start the presence thread
+    discordThreadRunning = true;
+    discordThread = std::thread(&MainWindow::discordWorker, this);
+
+    spdlog::info("Initialized rich presence");
+#endif
 }
+
+#if ADVANCED
+void MainWindow::updatePresence()
+{
+    // Set the status text
+    char detailText[128];
+    char lineText[128];
+    sprintf(detailText, "Editing: \"%s\"", this->fileName.c_str());
+    sprintf(lineText, "Line: %d", ui->text->textCursor().blockNumber()+1);
+
+    // Send the text to Discord
+    discordPresence.details = detailText;
+    discordPresence.state = lineText;
+    Discord_UpdatePresence(&discordPresence);
+}
+
+void MainWindow::discordWorker()
+{
+    while(discordThreadRunning) {
+        discordCounter++;
+        if(discordCounter >= 1000) {
+            discordCounter = 0;
+            updatePresence();
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+}
+#endif
 
 void MainWindow::withFile(std::string fileName)
 {
@@ -76,6 +119,17 @@ void MainWindow::withFile(std::string fileName)
         saved = false;
         updateTitle();
     }
+}
+
+MainWindow::~MainWindow()
+{
+#if ADVANCED
+    // Stop the Discord presence
+    discordThreadRunning = false;
+    if(discordThread.joinable()) { discordThread.join(); }
+    Discord_ClearPresence();
+    Discord_Shutdown();
+#endif
 }
 
 // General functions
@@ -138,7 +192,10 @@ void MainWindow::cursorMoved()
     statusBarLabel.setText(fmt::format("Ln {}, Col {}", row, col).c_str());
 }
 
-void MainWindow::updateTitle() { setWindowTitle(fmt::format("{}{} - {}", saved ? "" : "*", fileName.c_str(), PROGRAM).c_str()); }
+void MainWindow::updateTitle() 
+{
+    setWindowTitle(fmt::format("{}{} - {}", saved ? "" : "*", fileName.c_str(), PROGRAM).c_str());
+}
 
 // File functions
 
