@@ -118,6 +118,9 @@ void MainWindow::withFile(std::string fileName)
         filePath = this->fileName;
         saved = false;
         updateTitle();
+#if ADVANCED
+        updatePresence();
+#endif
     }
 }
 
@@ -276,6 +279,9 @@ void MainWindow::loadFile(std::string fileName)
     ui->text->moveCursor(QTextCursor::MoveOperation::End);
     saved = true;
     updateTitle();
+#if ADVANCED
+    updatePresence();
+#endif
     file.close();
 }
 
