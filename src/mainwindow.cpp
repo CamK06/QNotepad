@@ -114,8 +114,8 @@ void MainWindow::withFile(std::string fileName)
         loadFile(fileName);
     // Otherwise make a new file
     else {
-        this->fileName = fileName;
-        filePath = this->fileName;
+        this->fileName = std::filesystem::path(fileName).filename().u8string();
+        filePath = fileName;
         saved = false;
         updateTitle();
 #if ADVANCED
@@ -274,7 +274,7 @@ void MainWindow::loadFile(std::string fileName)
     
     // Load the file to GUI
     this->fileName = std::filesystem::path(fileName).filename().u8string();
-    filePath = this->fileName;
+    filePath = std::filesystem::path(fileName);
     ui->text->setText(text.c_str());
     ui->text->moveCursor(QTextCursor::MoveOperation::End);
     saved = true;
