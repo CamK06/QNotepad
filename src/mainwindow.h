@@ -72,8 +72,8 @@ private:
 
 	Ui::MainWindow *ui;
 	SearchDialog *searchDialog;
-	QPrintDialog *printDialog;
-	QPrinter *printer;
+	QPrintDialog *printDialog = nullptr;
+	QPrinter *printer = nullptr;
 	std::string fileName = "Untitled";
 	std::string filePath;
 	QLabel statusBarLabel;

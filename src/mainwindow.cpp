@@ -65,11 +65,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->formatFont, &QAction::triggered, this, &MainWindow::selectFont);
     connect(ui->editFind, &QAction::triggered, this, &MainWindow::search);
 
-    // Printer setup
-    // This is done here instead of at the top of the constructor like SearchDialog because that caused a segfault
-    printer = new QPrinter();
-    printDialog = new QPrintDialog(printer, this);
-
     spdlog::info("Initialized main window");
 
 #if ADVANCED
@@ -277,6 +272,12 @@ void MainWindow::saveAs()
 
 void MainWindow::print()
 {
+    // Printer setup (if needed)
+    if(printer == nullptr)
+        printer = new QPrinter();
+    if(printDialog == nullptr)
+        printDialog = new QPrintDialog(printer, this);
+
     if(printDialog->exec() != QDialog::Accepted)
         return;
     
