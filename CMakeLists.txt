@@ -29,14 +29,14 @@ set(CMAKE_AUTOUIC ON)
 
 file(GLOB SOURCES "src/*.cpp")
 
-find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt5 COMPONENTS Widgets PrintSupport REQUIRED)
+find_package(Qt5 COMPONENTS Widgets PrintSupport REQUIRED)
 
 add_executable(qnotepad ${SOURCES})
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "Haiku")
-target_link_libraries(qnotepad Qt5::Widgets spdlog fmt stdc++fs)
+target_link_libraries(qnotepad Qt5::Widgets Qt5::PrintSupport spdlog fmt stdc++fs)
 else()
-target_link_libraries(qnotepad Qt5::Widgets spdlog fmt)
+target_link_libraries(qnotepad Qt5::Widgets Qt5::PrintSupport spdlog fmt)
 endif()
 
 if(NOT CLASSIC)

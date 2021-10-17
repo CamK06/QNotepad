@@ -4,8 +4,11 @@
 #include <QStandardPaths>
 #include <QFileDialog>
 #include <QFontDialog>
+#include <QPrinter>
+#include <QPrintDialog>
 #include <QDesktopServices>
 #include <QGuiApplication>
+#include <QPainter>
 #include <QUrl>
 #include <spdlog/spdlog.h>
 #include <cstring>
@@ -47,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->fileOpen, &QAction::triggered, this, &MainWindow::openFile);
     connect(ui->fileSave, &QAction::triggered, this, &MainWindow::saveFile);
     connect(ui->fileSaveAs, &QAction::triggered, this, &MainWindow::saveAs);
+    connect(ui->filePrint, &QAction::triggered, this, &MainWindow::print);
     connect(ui->text, &QTextEdit::textChanged, this, &MainWindow::textUpdated);
     connect(ui->helpBugReport, &QAction::triggered, this, &MainWindow::reportBug);
     connect(ui->helpAbout, &QAction::triggered, this, &MainWindow::aboutDialog);
@@ -60,6 +64,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->text, &QTextEdit::cursorPositionChanged, this, &MainWindow::cursorMoved);
     connect(ui->formatFont, &QAction::triggered, this, &MainWindow::selectFont);
     connect(ui->editFind, &QAction::triggered, this, &MainWindow::search);
+
+    // Printer setup
+    // This is done here instead of at the top of the constructor like SearchDialog because that caused a segfault
+    printer = new QPrinter();
+    printDialog = new QPrintDialog(printer, this);
 
     spdlog::info("Initialized main window");
 
@@ -264,6 +273,14 @@ void MainWindow::saveAs()
 
     // Save the file; using the other function 'cause it's already there
     saveFile();
+}
+
+void MainWindow::print()
+{
+    if(printDialog->exec() != QDialog::Accepted)
+        return;
+    
+    ui->text->print(printer);
 }
 
 void MainWindow::loadFile(std::string fileName)

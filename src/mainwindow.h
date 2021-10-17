@@ -1,7 +1,9 @@
 #pragma once
 
 #include <QMainWindow>
+#include <QPrintDialog>
 #include <QLabel>
+#include <QPrinter>
 #include <thread>
 #include "search.h"
 #include "editor.h"
@@ -39,6 +41,7 @@ private:
 	void openFile();
 	void saveFile();
 	void saveAs();
+	void print();
 	void fileExit() { exit(true); } // This is just a workaround for Qt being annoying
 
 	// Edit menu
@@ -69,6 +72,8 @@ private:
 
 	Ui::MainWindow *ui;
 	SearchDialog *searchDialog;
+	QPrintDialog *printDialog;
+	QPrinter *printer;
 	std::string fileName = "Untitled";
 	std::string filePath;
 	QLabel statusBarLabel;

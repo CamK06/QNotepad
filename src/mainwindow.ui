@@ -69,6 +69,8 @@ outline: none;
     <addaction name="fileSave"/>
     <addaction name="fileSaveAs"/>
     <addaction name="separator"/>
+    <addaction name="filePrint"/>
+    <addaction name="separator"/>
     <addaction name="fileExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -235,6 +237,14 @@ outline: none;
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="filePrint">
+   <property name="text">
+    <string>Print...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>
