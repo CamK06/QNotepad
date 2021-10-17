@@ -280,7 +280,12 @@ void MainWindow::print()
     if(printDialog->exec() != QDialog::Accepted)
         return;
     
-    ui->text->print(printer);
+    // Confirmation
+    auto answer = QMessageBox::question(this, "Print", fmt::format("Are you sure you want to print document: '{}'?", fileName).c_str(), QMessageBox::Yes, QMessageBox::No);
+
+    // Print
+    if(answer == QMessageBox::Yes)
+        ui->text->print(printer);
 }
 
 void MainWindow::loadFile(std::string fileName)
