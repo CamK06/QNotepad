@@ -15,6 +15,10 @@ add_subdirectory(thirdparty/fmt)
 
 option(CLASSIC "Only build features present in the classic Windows notepad (WinXP era)" ON)
 
+if(NOT CLASSIC)
+  add_definitions(-DADVANCED)
+endif(NOT CLASSIC)
+
 include_directories(src) # This shouldn't be needed, but we do it so ui_mainwindow.h can see editor.h
 
 set(CMAKE_AUTOMOC ON)
