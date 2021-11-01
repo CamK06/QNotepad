@@ -4,6 +4,3 @@
 [submodule "thirdparty/fmt"]
 	path = thirdparty/fmt
 	url = https://github.com/fmtlib/fmt.git
-[submodule "thirdparty/discord-rpc"]
-	path = thirdparty/discord-rpc
-	url = https://github.com/discord/discord-rpc

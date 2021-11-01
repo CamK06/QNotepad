@@ -15,12 +15,6 @@ add_subdirectory(thirdparty/fmt)
 
 option(CLASSIC "Only build features present in the classic Windows notepad (WinXP era)" ON)
 
-if(NOT CLASSIC)
-    add_subdirectory(thirdparty/discord-rpc)
-    include_directories(thirdparty/discord-rpc/include)
-    add_definitions(-DADVANCED)
-endif(NOT CLASSIC)
-
 include_directories(src) # This shouldn't be needed, but we do it so ui_mainwindow.h can see editor.h
 
 set(CMAKE_AUTOMOC ON)
@@ -50,10 +44,6 @@ target_link_libraries(qnotepad Qt5::Widgets Qt5::PrintSupport spdlog fmt stdc++f
 else()
 target_link_libraries(qnotepad Qt5::Widgets Qt5::PrintSupport spdlog fmt)
 endif()
-
-if(NOT CLASSIC)
-target_link_libraries(qnotepad discord-rpc)
-endif(NOT CLASSIC)
 
 install(TARGETS qnotepad DESTINATION bin)
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")

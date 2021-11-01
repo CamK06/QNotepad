@@ -9,11 +9,6 @@
 #include "editor.h"
 #include "./ui_searchdialog.h"
 
-#if ADVANCED
-#include <discord_rpc.h>
-#define DISCORD_CLIENT_ID "819293814404677653"
-#endif
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -24,18 +19,12 @@ class MainWindow : public QMainWindow
 
 public:
 	MainWindow(QWidget *parent = nullptr);
-	~MainWindow();
 	void withFile(std::string fileName);
 	void loadFile(std::string fileName);
 	bool exit(bool fullExit);
 	Editor *editor();
 
 private:
-#if ADVANCED
-	void updatePresence();
-	void discordWorker();
-#endif
-
 	// File menu
 	void newFile();
 	void openFile();
@@ -78,12 +67,4 @@ private:
 	std::string filePath;
 	QLabel statusBarLabel;
 	bool saved = true; // This is true on default just to prevent an asterisk in the title
-#if ADVANCED
-	std::thread discordThread;
-	DiscordEventHandlers discordHandlers;
-	DiscordRichPresence discordPresence;
-	bool discordInitialized = false;
-	bool discordThreadRunning = false;
-	int discordCounter = 0;
-#endif
 };
