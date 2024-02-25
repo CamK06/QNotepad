@@ -23,13 +23,13 @@ SearchDialog::SearchDialog(QWidget *parent)
 
 void SearchDialog::findNext()
 {
-    // TODO: find a better way to access the main editor
-    // (this just seems silly to create this pointer again each time the button is pressed)
-    Editor* editor = ((MainWindow*)parent())->editor();
+    static Editor* editor;
+    if(editor == nullptr)
+        editor = ((MainWindow*)parent())->editor();
 
     // Set the search flags
     QTextDocument::FindFlags flags;
-    if(ui->downRadio->isChecked())
+    if(ui->upRadio->isChecked())
         flags.setFlag(QTextDocument::FindBackward, true);
     if(ui->matchCase->isChecked())
         flags.setFlag(QTextDocument::FindCaseSensitively, true);
