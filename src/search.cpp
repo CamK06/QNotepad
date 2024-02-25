@@ -1,6 +1,5 @@
 #include <QWidget>
 #include <QMessageBox>
-#include <spdlog/spdlog.h>
 #include <fmt/core.h>
 
 #include "mainwindow.h"

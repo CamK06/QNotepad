@@ -10,7 +10,6 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_subdirectory(thirdparty/spdlog)
 add_subdirectory(thirdparty/fmt)
 
 option(CLASSIC "Only build features present in the classic Windows notepad (WinXP era)" ON)
@@ -44,9 +43,9 @@ add_definitions("-DGIT_COMMIT=\"${GIT_COMMIT}\"")
 
 add_executable(qnotepad ${SOURCES})
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "Haiku")
-target_link_libraries(qnotepad Qt5::Widgets Qt5::PrintSupport spdlog fmt stdc++fs)
+target_link_libraries(qnotepad Qt5::Widgets Qt5::PrintSupport fmt stdc++fs)
 else()
-target_link_libraries(qnotepad Qt5::Widgets Qt5::PrintSupport spdlog fmt)
+target_link_libraries(qnotepad Qt5::Widgets Qt5::PrintSupport fmt)
 endif()
 
 install(TARGETS qnotepad DESTINATION bin)

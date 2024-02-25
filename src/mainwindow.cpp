@@ -10,7 +10,6 @@
 #include <QGuiApplication>
 #include <QPainter>
 #include <QUrl>
-#include <spdlog/spdlog.h>
 #include <cstring>
 #include <filesystem>
 #include <fstream>
@@ -24,14 +23,16 @@
 #include "./ui_mainwindow.h"
 #include "./ui_searchdialog.h"
 
+#include "log.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , searchDialog(new SearchDialog(this))
 {
-    spdlog::info(PROGRAM " " VERSION);
+    logger::info(PROGRAM " " VERSION);
 #if !ADVANCED
-    spdlog::info("Running in classic mode. Build with -DCLASSIC=OFF to enable advanced features");
+    logger::info("Running in classic mode. Build with -DCLASSIC=OFF to enable advanced features");
 #endif
     searchDialog->close();
     ui->setupUi(this);
@@ -65,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->formatFont, &QAction::triggered, this, &MainWindow::selectFont);
     connect(ui->editFind, &QAction::triggered, this, &MainWindow::search);
 
-    spdlog::info("Initialized main window");
+    logger::info("Initialized main window");
 }
 
 void MainWindow::withFile(std::string fileName)
@@ -107,7 +108,7 @@ bool MainWindow::exit(bool fullExit = true)
 
     // If we are exiting the whole program
     if(fullExit) {
-        spdlog::info("Shutting down...");
+        logger::info("Shutting down...");
         std::exit(0);
     }
 
@@ -118,7 +119,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     // Call exit() to get save dialogs if needed
     if(exit(false)) {
-        spdlog::info("Shutting down...");
+        logger::info("Shutting down...");
         event->accept();
     }
     else
@@ -161,7 +162,7 @@ void MainWindow::openFile()
     
     // This should only trigger if the user exits the dialog
     if(!std::filesystem::exists(fileName.toStdString())) {
-        spdlog::error("Invalid or no file");
+        logger::error("Invalid or no file");
         return;
     }
 
@@ -178,7 +179,7 @@ void MainWindow::newFile()
         fileName = "Untitled";
         filePath.clear();
         updateTitle();
-        spdlog::info("Created new file");
+        logger::info("Created new file");
     }
 }
 
@@ -286,7 +287,7 @@ void MainWindow::selectFont()
     // Set the font if the user pressed OK
     if(setFont) {
         ui->text->setFont(font);
-        spdlog::info("Changed font");
+        logger::info("Changed font");
     }
 }
 
