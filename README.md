@@ -61,7 +61,6 @@ FreeBSD | Xfce:
 
 # Libraries
 * [qt/qt5](https://github.com/qt/qt5)
-* [gabime/spdlog](https://github.com/gabime/spdlog)
 * [fmtlib/fmt](https://github.com/fmtlib/fmt)
 
 # Contributors
